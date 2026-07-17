@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ language.code }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title ?? store.name }}</title>
+    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+    {% block head %}{% endblock %}
+</head>
+<body class="theme-memory-lane">
+    {% component 'header.header' %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% component 'footer.footer' %}
+    <script src="{{ 'app.js' | asset }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
