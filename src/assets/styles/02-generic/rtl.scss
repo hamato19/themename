@@ -1,29 +1,542 @@
+/* ============================================================
+   🌹 THE MEMORY LANE - تنسيقات الاتجاه من اليمين لليسار (RTL) 🌹
+   ============================================================
+   هذا الملف يحتوي على التنسيقات الخاصة باللغة العربية
+   والاتجاه من اليمين إلى اليسار
+   ============================================================ */
+
+// ============================================================
+// 📐 التنسيقات الأساسية للاتجاه RTL
+// ============================================================
+
 .rtl,
 [dir="rtl"] {
+  
+  // ============================================================
+  // 🎛️ نطاق السعر (Range Slider)
+  // ============================================================
+  
   .rtl-range-slider {
     transform: rotateY(180deg);
   }
-
+  
   .rtl-range-numbers {
     flex-direction: row-reverse;
   }
-
+  
+  // ============================================================
+  // 📝 تنسيقات النماذج والقوائم المنسدلة
+  // ============================================================
+  
   .form-select, select {
     background-position: left 0.5rem center;
     padding-right: 12px;
+    padding-left: 2rem;
   }
-
+  
+  // ============================================================
+  // 🔧 إصلاح المحاذاة
+  // ============================================================
+  
   .fix-align {
     transform: translateY(-2px);
     display: inline-block;
   }
-
+  
+  // ============================================================
+  // 📅 Flatpickr (منتقي التاريخ)
+  // ============================================================
+  
   .flatpickr {
     &-months {
       .numInputWrapper {
         .cur-year {
           padding: 0 15px 0 0;
         }
+      }
+      
+      [class^="arrow"] {
+        right: 0;
+        left: unset;
+      }
+    }
+    
+    /* تنسيق الأيام */
+    &-day {
+      &.selected {
+        background: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+      }
+      
+      &:hover {
+        background: var(--bg-cream) !important;
+        color: var(--color-primary) !important;
+      }
+    }
+    
+    /* تنسيق الشهر */
+    &-month {
+      color: var(--color-dark);
+      font-family: var(--font-serif);
+    }
+  }
+  
+  // ============================================================
+  // 📋 Breadcrumbs (مسار التنقل)
+  // ============================================================
+  
+  .breadcrumbs {
+    .breadcrumb-item {
+      &:not(:last-child)::after {
+        content: '/';
+        margin: 0 8px;
+        color: var(--text-secondary);
+      }
+    }
+    
+    .arrow {
+      transform: rotate(180deg);
+      margin: 0 4px;
+      
+      &.sicon-keyboard_arrow_left:before {
+        content: "\e96d";
+      }
+    }
+  }
+  
+  // ============================================================
+  // 🔘 الأزرار
+  // ============================================================
+  
+  .btn-group {
+    .btn:not(:last-child) {
+      border-radius: 0;
+      border-top-right-radius: var(--border-radius-md);
+      border-bottom-right-radius: var(--border-radius-md);
+    }
+    
+    .btn:not(:first-child) {
+      border-radius: 0;
+      border-top-left-radius: var(--border-radius-md);
+      border-bottom-left-radius: var(--border-radius-md);
+    }
+  }
+  
+  // ============================================================
+  // 📝 النماذج والحقول
+  // ============================================================
+  
+  .form-group {
+    .form-label {
+      text-align: right;
+    }
+    
+    .form-help {
+      text-align: right;
+    }
+  }
+  
+  // ============================================================
+  // 📊 الجداول
+  // ============================================================
+  
+  .table {
+    th, td {
+      text-align: right;
+    }
+  }
+  
+  // ============================================================
+  // 🏷️ الشارات والعلامات
+  // ============================================================
+  
+  .badge {
+    &:not(:last-child) {
+      margin-left: 4px;
+      margin-right: 0;
+    }
+  }
+  
+  // ============================================================
+  // 📋 القوائم
+  // ============================================================
+  
+  .list-unstyled {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+  .list-inline {
+    padding-right: 0;
+    
+    .list-inline-item {
+      &:not(:last-child) {
+        margin-left: 8px;
+        margin-right: 0;
+      }
+    }
+  }
+  
+  // ============================================================
+  // 🎨 تنسيقات خاصة بالثيم للاتجاه RTL
+  // ============================================================
+  
+  /* تدرج الخلفية للاتجاه RTL */
+  .gradient-bg {
+    background: linear-gradient(to left, var(--color-primary), var(--color-dark));
+  }
+  
+  /* مسافة بين العناصر */
+  .gap-rtl {
+    gap: 1rem;
+    
+    > *:not(:last-child) {
+      margin-left: 1rem;
+      margin-right: 0;
+    }
+  }
+  
+  /* تنسيق شريط التذكير */
+  .memory-banner {
+    direction: rtl;
+    
+    span {
+      display: inline-block;
+    }
+  }
+  
+  /* تنسيق زر العودة للأعلى */
+  #back-to-top {
+    left: 20px;
+    right: auto;
+  }
+  
+  /* تنسيق السلايدر */
+  .memory-slider {
+    .swiper-button-next {
+      left: 20px;
+      right: auto;
+    }
+    
+    .swiper-button-prev {
+      right: 20px;
+      left: auto;
+    }
+  }
+  
+  /* تنسيق التعليقات */
+  .comment {
+    .comment-avatar {
+      margin-left: 16px;
+      margin-right: 0;
+    }
+    
+    .comment-content {
+      margin-right: 0;
+    }
+  }
+  
+  /* تنسيق الردود */
+  .reply {
+    padding-right: 40px;
+    padding-left: 0;
+  }
+  
+  // ============================================================
+  // 📱 الإشعارات والتنبيهات
+  // ============================================================
+  
+  .alert {
+    border-right: 4px solid var(--color-primary);
+    border-left: none;
+    
+    .alert-icon {
+      margin-left: 12px;
+      margin-right: 0;
+    }
+    
+    .close-btn {
+      left: auto;
+      right: 16px;
+    }
+  }
+  
+  // ============================================================
+  // 🛒 عربة التسوق
+  // ============================================================
+  
+  .cart-item {
+    .item-image {
+      margin-left: 16px;
+      margin-right: 0;
+    }
+    
+    .item-remove {
+      left: auto;
+      right: 0;
+    }
+  }
+  
+  // ============================================================
+  // 🔍 البحث
+  // ============================================================
+  
+  .search-box {
+    .search-input {
+      padding-right: 44px;
+      padding-left: 16px;
+    }
+    
+    .search-icon {
+      right: 14px;
+      left: auto;
+    }
+    
+    .search-clear {
+      left: auto;
+      right: 14px;
+    }
+  }
+  
+  // ============================================================
+  // 📱 القائمة الجانبية (Mobile Menu)
+  // ============================================================
+  
+  .mobile-menu {
+    .menu-header {
+      .close-menu {
+        left: auto;
+        right: 16px;
+      }
+    }
+    
+    .sub-menu {
+      padding-right: 20px;
+      padding-left: 0;
+      
+      .has-children > a {
+        &::after {
+          content: "\e96d";
+          margin-right: auto;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================
+// 🎯 تنسيقات إضافية للاتجاه RTL
+// ============================================================
+
+[dir="rtl"] {
+  /* تنسيق الفلتر */
+  .filter-group {
+    .filter-title {
+      text-align: right;
+    }
+    
+    .filter-options {
+      .option {
+        .option-label {
+          margin-right: 8px;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  
+  /* تنسيق المنتج */
+  .product-card {
+    .product-badge {
+      left: 12px;
+      right: auto;
+    }
+    
+    .product-rating {
+      .star {
+        margin-left: 2px;
+        margin-right: 0;
+      }
+    }
+  }
+  
+  /* تنسيق صفحة المنتج */
+  .product-single {
+    .product-gallery {
+      .thumbnails {
+        .thumbnail {
+          margin-left: 0;
+          margin-right: 8px;
+          
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    
+    .product-info {
+      .product-meta {
+        .meta-item {
+          margin-left: 0;
+          margin-right: 16px;
+          
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  
+  /* تنسيق التقييمات */
+  .reviews {
+    .review-item {
+      .review-avatar {
+        margin-left: 16px;
+        margin-right: 0;
+      }
+      
+      .review-stars {
+        .star {
+          margin-left: 2px;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  /* تنسيق المدونة */
+  .blog-post {
+    .post-meta {
+      .meta-item {
+        margin-left: 0;
+        margin-right: 16px;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    
+    .post-tags {
+      .tag {
+        margin-left: 0;
+        margin-right: 8px;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  /* تنسيق التذييل */
+  .footer {
+    .footer-social {
+      .social-icon {
+        margin-left: 0;
+        margin-right: 12px;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    
+    .footer-links {
+      .link-item {
+        padding-right: 0;
+        padding-left: 16px;
+        
+        &::before {
+          right: auto;
+          left: 0;
+        }
+      }
+    }
+  }
+  
+  // ============================================================
+  // 🌹 تنسيقات العطور للاتجاه RTL
+  // ============================================================
+  
+  /* عنوان الصفحة مع زخارف */
+  .page-title {
+    .memory-mode-active & {
+      &::before {
+        margin-left: 12px;
+        margin-right: 0;
+      }
+      
+      &::after {
+        margin-right: 12px;
+        margin-left: 0;
+      }
+    }
+  }
+  
+  /* الفاصل الذهبي */
+  .divider-memory {
+    &::before {
+      right: -20px;
+      left: auto;
+    }
+    
+    &::after {
+      left: -20px;
+      right: auto;
+    }
+  }
+  
+  /* عنوان القسم */
+  .section-title {
+    .memory-mode-active & {
+      &::before,
+      &::after {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+
+// ============================================================
+// 📱 تحسينات للشاشات الصغيرة في الاتجاه RTL
+// ============================================================
+
+@media (max-width: 768px) {
+  [dir="rtl"] {
+    .reply {
+      padding-right: 20px;
+    }
+    
+    .product-single {
+      .product-gallery {
+        .thumbnails {
+          .thumbnail {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+    
+    .footer {
+      .footer-links {
+        .link-item {
+          padding-left: 0;
+        }
+      }
+    }
+    
+    /* الفاصل الذهبي للجوال */
+    .divider-memory {
+      &::before {
+        right: -15px;
+      }
+      
+      &::after {
+        left: -15px;
       }
     }
   }
