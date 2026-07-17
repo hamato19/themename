@@ -1,30 +1,37 @@
-// Responsive breakpoints mixin
-@mixin mobile-xs {
-  @media(max-width: 400px) {
-    @content;
-  }
-}
-
-@mixin mobile {
-  @media(max-width: 480px) {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @media(max-width: 768px) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media(max-width: 992px) {
-    @content;
-  }
-}
-
-@mixin large-desktop {
-  @media(max-width: 1200px) {
-    @content;
-  }
+.product-card {
+    padding: 20px;
+    border-radius: 16px;
+    
+    // على الجوال الصغير
+    @include mobile-xs {
+        padding: 10px;
+        border-radius: 10px;
+        
+        .product-title {
+            font-size: 14px;
+        }
+    }
+    
+    // على الجوال العادي
+    @include mobile {
+        padding: 15px;
+        
+        .product-image {
+            height: 200px;
+        }
+    }
+    
+    // على التابلت
+    @include tablet {
+        padding: 18px;
+        
+        .product-title {
+            font-size: 16px;
+        }
+    }
+    
+    // على الديسكتوب
+    @include desktop {
+        padding: 20px;
+    }
 }
