@@ -1,95 +1,183 @@
+/* ============================================================
+   🌹 THE MEMORY LANE - تنسيقات الرأس والقوائم 🌹
+   ============================================================
+   هذا الملف يحتوي على جميع تنسيقات الرأس والقوائم في الثيم
+   ============================================================ */
 
-/* Top Nav */
+// ============================================================
+// 📌 Top Navbar
+// ============================================================
+
 .top-navbar {
   @apply flex py-2 min-h-[48px];
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
   @screen lg {
     @apply py-1.5;
   }
 
+  /* خلفية مخصصة */
   .topnav-has-bg & {
     @apply bg-[color:var(--topnav-bg)];
   }
 
+  /* تدرج مخصص */
   .topnav-has-gradient & {
     @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)];
   }
 
+  /* لون النص */
   .topnav-has-text-color & {
     @apply text-[color:var(--topnav-text-color)];
   }
 
-  .s-search-input{
-    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
+  /* تنسيق حقل البحث */
+  .s-search-input {
+    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none rounded-full;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      @apply bg-white;
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+    }
   }
 
+  /* نتائج البحث على الجوال */
   @media (max-width: 640px) {
-    .s-search-results{
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
+    .s-search-results {
+      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5;
     }
-  } 
+  }
 
+  /* الوضع الداكن للشريط العلوي */
   .topnav-is-dark & {
     @apply bg-dark text-gray-300;
+    border-bottom-color: rgba(255, 255, 255, 0.05);
 
     .btn--circle-gray,
     .btn--rounded-gray,
-    .s-search-input{
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
+    .s-search-input {
+      @apply bg-gray-100/10 hover:bg-gray-100/[0.15];
     }
 
-    .topnav-link-item{
+    .topnav-link-item {
       @apply border-gray-300/10;
+      
+      &:hover {
+        color: var(--color-gold);
+      }
     }
 
-    .s-search-input{
+    .s-search-input {
       @apply text-white;
+      
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    
+    /* تنسيق في وضع الذكريات */
+    .memory-mode-active & {
+      border-bottom-color: rgba(201, 168, 124, 0.1);
+      
+      .topnav-link-item:hover {
+        color: var(--color-gold);
+      }
     }
   }
 
-  .search-btn{
+  /* زر البحث */
+  .search-btn {
     @apply grow sm:grow-0 justify-start md:justify-center;
   }
 }
 
-// contacs menu items - pages menu items
-.topnav-link-item{
-  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
+// ============================================================
+// 🔗 Topnav Links
+// ============================================================
 
-  &.right-side{
-    @apply rtl:first:pr-0 ltr:first:pl-0
+.topnav-link-item {
+  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  
+  &:hover {
+    color: var(--color-primary);
+  }
+  
+  .memory-mode-active & {
+    font-family: var(--font-serif);
+    
+    &:hover {
+      color: var(--color-gold);
+    }
+  }
+
+  &.right-side {
+    @apply rtl:first:pr-0 ltr:first:pl-0;
   }
 }
 
-/* Main Nav */
+// ============================================================
+// 📌 Main Nav
+// ============================================================
+
 .main-nav-container {
   @apply min-h-[68px] lg:min-h-[84px];
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
   
-  // Custom background Color
+  /* خلفية مخصصة */
   .has-bg &,
-  .has-bg & .sub-menu{
+  .has-bg & .sub-menu {
     @apply bg-[color:var(--mainnav-bg)];
   }
 
-  // Custom text color
+  /* لون النص */
   .has-text-color & {
     @apply text-[color:var(--mainnav-text-color)];
   }
+  
+  /* تنسيق في وضع الذكريات */
+  .memory-mode-active & {
+    border-bottom-color: rgba(201, 168, 124, 0.1);
+  }
 }
+
+// ============================================================
+// 📋 Menu Items
+// ============================================================
 
 .menu-item {
   @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30;
+  font-family: var(--font-sans);
+  
+  .memory-mode-active & {
+    font-family: var(--font-serif);
+    
+    &:hover {
+      background: rgba(201, 168, 124, 0.05);
+    }
+  }
 
-  &.logout{
+  &.logout {
     @apply text-red-400;
   }
 
-  &.is-active{
+  &.is-active {
     @apply text-primary bg-gray-200/20;
+    
+    .memory-mode-active & {
+      color: var(--color-gold);
+      background: rgba(201, 168, 124, 0.05);
+    }
   }
 }
 
-/* Sticky Header */
+// ============================================================
+// 📌 Sticky Header
+// ============================================================
+
 .main-nav-container {
   &.animated {
     .inner {
@@ -105,12 +193,19 @@
       left: 0;
       width: 100%;
       z-index: 29;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-medium);
       transform: translate3d(0, -100%, 0);
+      background: var(--bg-light);
+      border-bottom: 2px solid var(--color-gold);
 
-      @media (max-width: 1024px){
+      @media (max-width: 1024px) {
         transform: none;
         top: -70px;
+      }
+      
+      .memory-mode-active & {
+        border-bottom-color: var(--color-gold);
+        box-shadow: var(--shadow-gold);
       }
     }
 
@@ -134,7 +229,7 @@
     .inner {
       transform: translate3d(0, 0, 0);
 
-      @media (max-width: 1024px){
+      @media (max-width: 1024px) {
         transform: none;
         top: 0;
       }
@@ -142,21 +237,69 @@
   }
 }
 
+// ============================================================
+// 🏷️ Navbar Brand
+// ============================================================
+
 .navbar-brand {
   @apply items-center flex my-2 lg:my-0;
-
+  
   img {
     @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  .memory-mode-active & {
+    img {
+      filter: drop-shadow(0 0 10px rgba(201, 168, 124, 0.2));
+    }
   }
 }
 
-// Mainnav cart icon
-.header-btn{
-  @apply border-none outline-none transition-opacity hover:opacity-80;
+// ============================================================
+// 🎯 Header Buttons
+// ============================================================
 
-  &__icon{
+.header-btn {
+  @apply border-none outline-none transition-all duration-300;
+  
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+  
+  .memory-mode-active & {
+    &:hover {
+      opacity: 1;
+      color: var(--color-gold);
+    }
+  }
+
+  &__icon {
     @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700;
-    &.icon{
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+      box-shadow: var(--shadow-soft);
+    }
+    
+    .memory-mode-active & {
+      border-color: var(--color-gold);
+      
+      &:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        box-shadow: var(--shadow-gold);
+      }
+    }
+    
+    &.icon {
       @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
     }
   }
@@ -165,70 +308,104 @@
 .header-buttons .sicon-sar {
   width: 0.65rem;
   display: inline-block;
-min-height: 1.4rem;
+  min-height: 1.4rem;
 }
 
 #mainnav .sicon-menu {
   width: 1rem;
-  display: inline-block
+  display: inline-block;
 }
 
+// ============================================================
+// 🧩 Component Fixes
+// ============================================================
+
 custom-main-menu {
-  min-height: 84px
+  min-height: 84px;
 }
 
 salla-cart-summary {
   min-width: 73px;
-  min-height: 40px
+  min-height: 40px;
 }
-salla-user-menu{
+
+salla-user-menu {
   @apply shrink-0;
 }
 
-// cart summary
-.s-cart-summary-total{
+// ============================================================
+// 🛒 Cart Summary
+// ============================================================
+
+.s-cart-summary-total {
   @apply text-black font-[600];
+  
+  .memory-mode-active & {
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+  }
 }
 
-.s-cart-summary-count{
-  @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5 bg-red-800;
+.s-cart-summary-count {
+  @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 10px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .memory-mode-active & {
+    background: var(--color-gold);
+    color: var(--color-dark);
+  }
 }
 
-#nav-cart{
+#nav-cart {
   @apply flex items-center rtl:mr-4 ltr:ml-4 relative whitespace-nowrap;
-
-  .icon{
+  
+  .icon {
     @apply rtl:ml-2 ltr:mr-2;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover .icon {
+    transform: scale(1.1);
+    color: var(--color-gold);
   }
 
-  span{
+  span {
     @apply absolute top-1 rtl:-right-2 ltr:-left-2;
   }
 }
 
+// ============================================================
+// 🔍 Search
+// ============================================================
 
-// Search
-.header-search{
-  .s-search-results{
+.header-search {
+  .s-search-results {
     @apply z-10;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-medium);
+    
+    .memory-mode-active & {
+      border-color: var(--color-gold);
+      box-shadow: var(--shadow-gold);
+    }
   }
 }
 
-
-/* ============================
-   Menu Skeletons (loading state)
-
-   Only the two menus need a placeholder — they wait on an API request.
-   The other Salla components (search, lang/currency, contacts) render
-   their content synchronously and don't need a skeleton.
-
-   - Top-nav menu : CSS-only via salla-menu[topnav]:not(.hydrated) pseudos
-   - Main menu    : initial innerHTML seeded by NavigationMenu, replaced
-                    when render() runs (`.main-menu-skel` block)
-   ============================ */
+// ============================================================
+// 💀 Menu Skeletons (loading state)
+// ============================================================
 
 @keyframes header-skel-shimmer {
-  0%   { background-position: 200% 0; }
+  0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
@@ -243,13 +420,19 @@ salla-user-menu{
   background-size: 200% 100%;
   background-repeat: no-repeat;
   animation: header-skel-shimmer 1.4s ease-in-out infinite;
+  
+  .memory-mode-active & {
+    background-color: rgba(201, 168, 124, 0.05);
+    background-image: linear-gradient(
+      90deg,
+      rgba(201, 168, 124, 0) 0%,
+      rgba(201, 168, 124, 0.1) 50%,
+      rgba(201, 168, 124, 0) 100%
+    );
+  }
 }
 
-// ── Top-nav menu — pure CSS via pseudo-elements ─────────────────
-// Stencil hides every <salla-*> with `visibility:hidden` until the
-// `.hydrated` class is added (which restores visibility: inherit).
-// Override that for our pre-hydration state so the pseudo-element
-// pills are actually visible.
+/* ── Top-nav menu — pure CSS via pseudo-elements ───────────────── */
 salla-menu[topnav]:not(.hydrated) {
   @apply hidden lg:inline-flex items-center gap-2;
   visibility: visible;
@@ -263,10 +446,10 @@ salla-menu[topnav]:not(.hydrated) {
   }
 
   &::before { width: 60px; }
-  &::after  { width: 50px; }
+  &::after { width: 50px; }
 }
 
-// ── Main menu — DOM seeded by NavigationMenu ────────────────────
+/* ── Main menu — DOM seeded by NavigationMenu ──────────────────── */
 .main-menu-skel {
   @apply hidden lg:inline-flex items-center gap-4 mx-6 py-8;
 }
@@ -280,7 +463,7 @@ salla-menu[topnav]:not(.hydrated) {
 
 .header-skel-item--menu { height: 14px; width: 80px; }
 
-// ── Dark topnav variant — lift contrast on dark backgrounds ─────
+/* ── Dark topnav variant — lift contrast on dark backgrounds ───── */
 .topnav-is-dark {
   .top-navbar salla-menu[topnav]:not(.hydrated)::before,
   .top-navbar salla-menu[topnav]:not(.hydrated)::after {
@@ -291,5 +474,140 @@ salla-menu[topnav]:not(.hydrated) {
       rgba(255, 255, 255, 0.14) 50%,
       rgba(255, 255, 255, 0) 100%
     );
+  }
+}
+
+// ============================================================
+// 🌹 THE MEMORY LANE - تنسيقات إضافية للرأس
+// ============================================================
+
+/* شعار مميز مع تأثير ذهبي */
+.logo-memory {
+  position: relative;
+  
+  &::after {
+    content: '✦';
+    position: absolute;
+    top: -8px;
+    right: -20px;
+    font-size: 12px;
+    color: var(--color-gold);
+    animation: memoryGlow 3s ease-in-out infinite;
+  }
+}
+
+/* قائمة رئيسية مع تأثيرات */
+.main-menu {
+  li {
+    position: relative;
+    
+    a {
+      font-family: var(--font-sans);
+      transition: all 0.3s ease;
+      
+      .memory-mode-active & {
+        font-family: var(--font-serif);
+        letter-spacing: 0.5px;
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--color-gold);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      &:hover::after {
+        width: 60%;
+      }
+    }
+  }
+}
+
+// ============================================================
+// 📱 تحسينات للشاشات الصغيرة
+// ============================================================
+
+@include mobile {
+  .top-navbar {
+    @apply py-1 min-h-[40px];
+    
+    .s-search-input {
+      font-size: 14px !important;
+    }
+  }
+  
+  .main-nav-container {
+    @apply min-h-[56px];
+  }
+  
+  .navbar-brand img {
+    @apply max-h-10 max-w-[80px];
+  }
+  
+  .header-btn__icon {
+    @apply w-8 h-8 text-base;
+  }
+  
+  #nav-cart {
+    @apply rtl:mr-2 ltr:ml-2;
+  }
+}
+
+// ============================================================
+// 🌙 الوضع الداكن (Dark Mode)
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+  .main-nav-container {
+    &.fixed-pinned .inner {
+      background: var(--bg-dark);
+      border-bottom-color: var(--color-gold);
+    }
+  }
+  
+  .header-btn__icon {
+    border-color: var(--border-dark);
+    color: var(--text-secondary);
+    
+    &:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
+  }
+  
+  .s-cart-summary-total {
+    color: var(--text-light);
+  }
+  
+  .s-cart-summary-count {
+    background: var(--color-gold);
+    color: var(--color-dark);
+  }
+  
+  .topnav-link-item {
+    color: var(--text-secondary);
+    
+    &:hover {
+      color: var(--color-gold);
+    }
+  }
+  
+  .menu-item {
+    color: var(--text-secondary);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    &.is-active {
+      color: var(--color-gold);
+      background: rgba(255, 255, 255, 0.03);
+    }
   }
 }
