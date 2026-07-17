@@ -1,6 +1,412 @@
-@mixin flexable($align: center, $justify: center, $direction: row) {
+/* ============================================================
+   🌹 THE MEMORY LANE - مكسات (Mixins) مساعدة 🌹
+   ============================================================
+   هذا الملف يحتوي على جميع المكسات المستخدمة في الثيم
+   ============================================================ */
+
+// ============================================================
+// 📐 FLEXBOX MIXINS
+// ============================================================
+
+/**
+ * مكس Flexbox أساسي
+ * @param {string} $align - محاذاة عمودية (start, center, end, stretch)
+ * @param {string} $justify - محاذاة أفقية (start, center, end, between, around, evenly)
+ * @param {string} $direction - اتجاه العناصر (row, column, row-reverse, column-reverse)
+ * @param {string} $wrap - التفاف العناصر (nowrap, wrap, wrap-reverse)
+ */
+@mixin flexable($align: center, $justify: center, $direction: row, $wrap: nowrap) {
   display: flex;
   align-items: $align;
   justify-content: $justify;
   flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+/**
+ * مكس Flexbox مع مسافات بين العناصر
+ * @param {string} $gap - المسافة بين العناصر
+ */
+@mixin flex-gap($gap: 1rem) {
+  display: flex;
+  gap: $gap;
+}
+
+/**
+ * مكس لتوسيط العنصر بشكل كامل (perfect centering)
+ */
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**
+ * مكس لعناصر في صف مع توزيع متساوٍ
+ */
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/**
+ * مكس لعناصر في عمود
+ */
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// ============================================================
+// 🎨 GRID MIXINS
+// ============================================================
+
+/**
+ * مكس Grid أساسي
+ * @param {number} $columns - عدد الأعمدة
+ * @param {string} $gap - المسافة بين الأعمدة
+ */
+@mixin grid($columns: 3, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+/**
+ * مكس Grid مع أعمدة مخصصة
+ * @param {string} $columns - تعريف الأعمدة (مثل: 1fr 2fr 1fr)
+ */
+@mixin grid-custom($columns: 1fr 2fr 1fr, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+/**
+ * مكس Grid Responsive
+ * @param {number} $min - الحد الأدنى لعرض العمود
+ * @param {string} $gap - المسافة بين الأعمدة
+ */
+@mixin grid-auto($min: 250px, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+  gap: $gap;
+}
+
+// ============================================================
+// 📱 RESPONSIVE MIXINS (مع تحسينات للثيم)
+// ============================================================
+
+@mixin mobile-xs {
+  @media(max-width: 400px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media(max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media(max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media(max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media(max-width: 1200px) {
+    @content;
+  }
+}
+
+/**
+ * مكس مخصص للشاشات الكبيرة جداً
+ */
+@mixin xl-desktop {
+  @media(min-width: 1400px) {
+    @content;
+  }
+}
+
+// ============================================================
+// 🎨 TYPOGRAPHY MIXINS
+// ============================================================
+
+/**
+ * مكس للخط الكلاسيكي (المناسب للعطور)
+ */
+@mixin font-serif($size: 1rem, $weight: normal, $color: var(--main-text-color)) {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  letter-spacing: 0.5px;
+}
+
+/**
+ * مكس للخط الحديث
+ */
+@mixin font-sans($size: 1rem, $weight: normal, $color: var(--main-text-color)) {
+  font-family: 'DINNextLTArabic', 'Segoe UI', sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+/**
+ * مكس لعناوين الأقسام (مع لمسة ذهبية)
+ */
+@mixin section-title {
+  @include font-serif(2rem, bold, var(--color-primary));
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  
+  &::after {
+    content: '✦';
+    display: block;
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    animation: memoryGlow 3s ease-in-out infinite;
+  }
+}
+
+// ============================================================
+// 🎯 COMPONENT MIXINS
+// ============================================================
+
+/**
+ * مكس لبطاقات المنتجات
+ */
+@mixin product-card {
+  background: #fff;
+  border: 1px solid var(--color-gold);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-primary);
+  }
+  
+  .product-image {
+    overflow: hidden;
+    
+    img {
+      transition: transform 0.5s ease;
+      width: 100%;
+      height: auto;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+  
+  .product-info {
+    padding: 1rem;
+    
+    .product-title {
+      @include font-serif(1.1rem, bold, var(--color-dark));
+      margin-bottom: 0.5rem;
+    }
+    
+    .product-price {
+      @include font-sans(1.2rem, bold, var(--color-primary));
+    }
+  }
+}
+
+/**
+ * مكس للأزرار الرئيسية
+ */
+@mixin btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-gold));
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 32px;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/**
+ * مكس للأزرار الثانوية
+ */
+@mixin btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 25px;
+  padding: 10px 30px;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/**
+ * مكس للظلال المخصصة
+ */
+@mixin shadow-memory($level: 'soft') {
+  @if $level == 'soft' {
+    box-shadow: var(--shadow-soft);
+  } @else if $level == 'medium' {
+    box-shadow: var(--shadow-medium);
+  } @else if $level == 'strong' {
+    box-shadow: var(--shadow-strong);
+  } @else if $level == 'gold' {
+    box-shadow: var(--shadow-gold);
+  }
+}
+
+/**
+ * مكس لتدرجات الخلفية
+ */
+@mixin gradient-warm {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+@mixin gradient-dark {
+  background: linear-gradient(135deg, var(--color-dark), #1A0F0A);
+}
+
+@mixin gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-amber));
+}
+
+// ============================================================
+// 🖼️ IMAGE & BACKGROUND MIXINS
+// ============================================================
+
+/**
+ * مكس لصور الخلفية
+ */
+@mixin bg-cover($image: null) {
+  @if $image {
+    background-image: url($image);
+  }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/**
+ * مكس لصور الخلفية مع تدرج (Overlay)
+ */
+@mixin bg-overlay($image: null, $color: rgba(44, 24, 16, 0.5)) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $color;
+    z-index: 1;
+  }
+  
+  @if $image {
+    background-image: url($image);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+// ============================================================
+// ✨ ANIMATION MIXINS
+// ============================================================
+
+/**
+ * مكس للحركات (Animations)
+ */
+@mixin animation($name, $duration: 1s, $easing: ease, $delay: 0s) {
+  animation: $name $duration $easing $delay;
+}
+
+/**
+ * مكس لحركة التلاشي
+ */
+@mixin fade-in($duration: 0.8s, $delay: 0s) {
+  animation: memoryFadeIn $duration ease $delay both;
+}
+
+/**
+ * مكس لحركة التوهج
+ */
+@mixin glow-text {
+  animation: memoryGlow 3s ease-in-out infinite;
+}
+
+// ============================================================
+// 🔧 UTILITY MIXINS
+// ============================================================
+
+/**
+ * مكس لإخفاء النص (للـ SEO)
+ */
+@mixin text-hidden {
+  text-indent: -9999px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/**
+ * مكس لتحديد مساحة العنصر
+ */
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/**
+ * مكس للحدود المخصصة
+ */
+@mixin border-memory($width: 1px, $color: var(--border-color)) {
+  border: $width solid $color;
+  border-radius: var(--border-radius-md);
+}
+
+/**
+ * مكس للترانسفورم عند التمرير
+ */
+@mixin hover-transform($transform: translateY(-5px), $duration: 0.3s) {
+  transition: all $duration ease;
+  
+  &:hover {
+    transform: $transform;
+  }
 }
