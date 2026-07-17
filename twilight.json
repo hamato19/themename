@@ -654,13 +654,12 @@
             },
             "icon": "sicon-list-play",
             "path": "home.memory-products-slider",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "with-bg",
-                    "value": "<div style='background: linear-gradient(135deg, #5D4037, #8D6E63); border-radius: 12px; padding: 20px;'><h4 style='color: #F5E6D3; text-align: center;'>🌟 عطور تحمل ذكرياتك 🌟</h4></div>"
+                    "value": "<div ><h4 >🌟 عطور تحمل ذكرياتك 🌟</h4></div>"
                 },
                 {
                     "type": "string",
