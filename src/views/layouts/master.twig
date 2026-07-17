@@ -56,7 +56,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="متجر عطور 'ذا ميموري لين' - رحلة عبر الذكريات مع أروع العطور">
+    <meta property="og:title" content="{{ store.name }} - ذاكرة العطور">
+    <meta property="og:description" content="اكتشف العطور التي تحمل ذكرياتك">
+    
     {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
+    
+    {# تحديد الألوان المخصصة للثيم #}
+    {% set primary_color = theme.settings.get('primary_color', '#8B7355') %}
+    {% set secondary_color = theme.settings.get('secondary_color', '#C4A882') %}
+    {% set memory_mode = theme.settings.get('enable_memory_mode', true) %}
 
     <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}"></script>
@@ -66,14 +75,16 @@
 
     {% block head_scripts %}{% endblock %}
 
-
     <script data-cfasync="false">
-        window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
-        window.imageZoom = "{{theme.settings.get('imageZoom')}}"
+        window.header_is_sticky = "{{ theme.settings.get('header_is_sticky', 'Default Value') }}"
+        window.imageZoom = "{{ theme.settings.get('imageZoom', true) }}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
+        window.memory_mode = "{{ memory_mode }}"
+        window.primary_color = "{{ primary_color }}"
+        window.secondary_color = "{{ secondary_color }}"
     </script>
     
     {% hook 'head:start' %}
@@ -86,40 +97,123 @@
     <style>
         :root {
             --font-main: '{{ (theme.font.name is iterable ? theme.font.name[user.language.code]|default(theme.font.name|first) : theme.font.name) }}';
-            --color-primary: {{ theme.color.primary }};
-            --color-primary-dark: {{ theme.color.darker(0.15) }};
-            --color-primary-light: {{ theme.color.lighter(0.15) }};
+            --color-primary: {{ primary_color }};
+            --color-secondary: {{ secondary_color }};
+            --color-primary-dark: {{ theme.color.darker(0.2, primary_color) }};
+            --color-primary-light: {{ theme.color.lighter(0.2, primary_color) }};
             --color-primary-reverse: {{ theme.color.reverse_text }};
+            --color-memory-gold: #C9A87C;
+            --color-memory-amber: #8B7355;
+            --color-memory-cream: #F5E6D3;
+            --color-memory-dark: #2C1810;
+            
+            /* إعدادات وضع الذكريات */
+            --memory-overlay-opacity: {% if memory_mode %}0.4{% else %}0.6{% endif %};
+            --memory-font-family: 'Georgia', serif;
+        }
+        
+        /* تخصيص إضافي لوضع الذكريات */
+        {% if memory_mode %}
+        .memory-mode-active .section-title {
+            font-family: var(--memory-font-family);
+            letter-spacing: 1px;
+        }
+        .memory-mode-active .product-card {
+            border: 1px solid var(--color-memory-gold);
+            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.15);
+            transition: all 0.3s ease;
+        }
+        .memory-mode-active .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(139, 115, 85, 0.25);
+        }
+        {% endif %}
+        
+        /* تخصيص ألوان الأزرار */
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            transform: scale(1.02);
+        }
+        
+        /* شريط التحميل */
+        .page-loader {
+            border-color: var(--color-primary);
         }
     </style>
+    
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
-  {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
-  {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
-  {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
+<body id="app" class="theme-memory-lane overflow-x-hidden {% hook 'body:classes' %}
+  {{ theme.settings.get('footer_is_dark', true) ? ' footer-is-dark' : ' footer-is-light' }}
+  {{ theme.settings.get('topnav_is_dark', true) ? ' topnav-is-dark' : '' }}
+  {{ theme.settings.get('sticky_add_to_cart', true) ? ' is-sticky-product-bar' : '' }}
+  {{ memory_mode ? ' memory-mode-active' : '' }}
   ">
 <noscript>
-    To get full functionality of this site you need to enable JavaScript. Here is how
-    <a href="https://www.enable-javascript.com/" rel="noreferrer"
-       target="_blank">To enable JavaScript on webpage</a>.
+    <div style="background-color: #8B7355; color: #fff; padding: 20px; text-align: center; border-radius: 8px; margin: 10px;">
+        <p>⚠️ لتجربة أفضل في متجر "ذا ميموري لين"، يرجى تفعيل جافا سكريبت في متصفحك.</p>
+        <a href="https://www.enable-javascript.com/" rel="noreferrer" target="_blank" style="color: #F5E6D3; text-decoration: underline;">
+            تعلم كيف تفعل ذلك
+        </a>
+    </div>
 </noscript>
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
+    
+    {# رأس الصفحة مع شعار مميز #}
     {% component 'header.header' %}
+    
+    {# شريط تذكيري اختياري - يعرض عند تفعيل وضع الذكريات #}
+    {% if memory_mode %}
+    <div class="memory-banner bg-memory-cream text-memory-dark py-2 px-4 text-center text-sm hidden md:block" style="background: linear-gradient(90deg, #F5E6D3, #C9A87C, #F5E6D3);">
+        <span class="font-serif">✨ "كل عطر يحمل ذكرى... دعنا نأخذك في رحلة عبر الزمن" ✨</span>
+    </div>
+    {% endif %}
+    
     <main id="main-content" role="main"{{ (page.slug == 'product.single' or page.slug starts with 'product.index') ? ' class="flex flex-col space-y-8 sm:space-y-16"' : '' }}>
     {% block content %}{% endblock %}
     </main>
+    
+    {# تذييل الصفحة #}
     {% component 'footer.footer' %}
+    
+    {# زر العودة للأعلى - مخصص للثيم #}
+    <button id="back-to-top" class="fixed bottom-24 right-4 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible hover:scale-110 z-50" 
+            style="background-color: var(--color-primary); color: #fff;"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="sicon-arrow-up text-xl"></i>
+    </button>
 </div>
 {% hook 'body:end' %}
+
+{# إشعار إضافة المنتج للسلة #}
 {% if theme.settings.get('enable_add_product_toast', true) %}
     <salla-add-product-toast></salla-add-product-toast>
 {% endif %}
-<script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
 
-{# Twilight Components #}
+{# المكونات الأساسية #}
+<script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
+<script>
+    // إظهار زر العودة للأعلى عند التمرير
+    document.addEventListener('scroll', function() {
+        const btn = document.getElementById('back-to-top');
+        if (window.scrollY > 500) {
+            btn.classList.remove('opacity-0', 'invisible');
+            btn.classList.add('opacity-100', 'visible');
+        } else {
+            btn.classList.add('opacity-0', 'invisible');
+            btn.classList.remove('opacity-100', 'visible');
+        }
+    });
+</script>
+
+{# مكونات تويلايت #}
 <salla-offer-modal></salla-offer-modal>
 <salla-search></salla-search>
 <salla-login-modal></salla-login-modal>
