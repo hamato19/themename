@@ -1,18 +1,399 @@
+/* ============================================================
+   🌹 THE MEMORY LANE - تحميل الصور البطيء (Lazy Loading) 🌹
+   ============================================================
+   هذا الملف يحتوي على تنسيقات التحميل البطيء للصور والسلايدرات
+   ============================================================ */
 
-// sliders lazyloading opacity transition
-.swiper-lazy{
+// ============================================================
+// 🎬 Swiper Lazy Loading
+// ============================================================
+
+/* التحميل البطيء لسلايدر Swiper */
+.swiper-lazy {
   @apply transition-opacity duration-500 opacity-0;
   @apply absolute top-0 h-full w-full bg-cover bg-center;
-
-  &.swiper-lazy-loaded{
+  background-color: var(--bg-cream); /* خلفية مؤقتة أثناء التحميل */
+  
+  /* تأثير تدرج خفيف أثناء التحميل */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-light) 100%);
+    z-index: -1;
+  }
+  
+  /* عند اكتمال التحميل */
+  &.swiper-lazy-loaded {
     @apply opacity-100;
+    
+    /* تأثير ظهور ناعم مع تكبير خفيف */
+    animation: lazyLoadFadeIn 0.8s ease forwards;
   }
 }
 
-.lazy__bg{
-  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0;
+/* ============================================================
+   🖼️ Lazy Background Images
+   ============================================================ */
 
-  &.loaded{
+/* خلفية التحميل البطيء للعناصر */
+.lazy__bg {
+  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0;
+  background-color: var(--bg-cream); /* خلفية مؤقتة */
+  
+  /* تأثير تدرج خفيف */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-light) 100%);
+    z-index: -1;
+  }
+  
+  /* عند اكتمال التحميل */
+  &.loaded {
     @apply opacity-100;
+    animation: lazyLoadFadeIn 0.8s ease forwards;
+  }
+}
+
+// ============================================================
+// 🎨 Lazy Loading Animations
+// ============================================================
+
+/* حركة ظهور الصورة بعد التحميل */
+@keyframes lazyLoadFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* حركة ظهور مع تأثير عطري (مخصص للعطور) */
+@keyframes lazyPerfumeReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) rotate(-2deg);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02) rotate(1deg);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+/* حركة ظهور مع تأثير ذهبي (للصور المميزة) */
+@keyframes lazyGoldReveal {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  100% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+// ============================================================
+// 🎯 Lazy Loading Classes
+// ============================================================
+
+/* فئة للتحميل البطيء مع تأثير عطري */
+.lazy-perfume {
+  opacity: 0;
+  transition: all 0.8s ease;
+  
+  &.loaded {
+    animation: lazyPerfumeReveal 1s ease forwards;
+  }
+}
+
+/* فئة للتحميل البطيء مع تأثير ذهبي */
+.lazy-gold {
+  opacity: 0;
+  transition: all 0.8s ease;
+  
+  &.loaded {
+    animation: lazyGoldReveal 0.8s ease forwards;
+  }
+}
+
+/* فئة للتحميل البطيء مع تأثير تلاشي بسيط */
+.lazy-fade {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+  
+  &.loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================================
+// 🖼️ Placeholder Styles
+// ============================================================
+
+/* مكان مؤقت للصور أثناء التحميل */
+.image-placeholder {
+  background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-light) 100%);
+  position: relative;
+  overflow: hidden;
+  
+  /* تأثير تموج أثناء التحميل */
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 75%,
+      transparent 100%
+    );
+    animation: shimmerPlaceholder 2s ease-in-out infinite;
+  }
+}
+
+/* حركة التموج للمكان المؤقت */
+@keyframes shimmerPlaceholder {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(0deg);
+  }
+}
+
+// ============================================================
+// 🎬 Swiper Specific Styles
+// ============================================================
+
+/* تنسيق السلايدر أثناء التحميل */
+.swiper-slide {
+  .swiper-lazy {
+    background-color: var(--bg-cream);
+  }
+  
+  /* تنسيق الصورة بعد التحميل */
+  .swiper-lazy-loaded {
+    ~ .swiper-lazy-preloader {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+}
+
+/* مؤشر التحميل المخصص للسلايدر */
+.swiper-lazy-preloader {
+  border-color: var(--color-gold) !important;
+  border-top-color: var(--color-primary) !important;
+}
+
+// ============================================================
+// 📱 Lazy Loading for Product Images
+// ============================================================
+
+/* تنسيق صور المنتجات أثناء التحميل */
+.product-image {
+  .lazy__bg {
+    background-color: var(--bg-cream);
+  }
+  
+  /* تأثير على الصورة بعد التحميل */
+  .loaded {
+    ~ .product-image-placeholder {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
+  }
+}
+
+/* مكان مؤقت لصورة المنتج */
+.product-image-placeholder {
+  @apply absolute top-0 left-0 w-full h-full flex items-center justify-center;
+  background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-light) 100%);
+  transition: all 0.5s ease;
+  z-index: 1;
+  
+  /* أيقونة عطر أثناء التحميل */
+  &::before {
+    content: '🌸';
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: perfumeFloat 3s ease-in-out infinite;
+  }
+}
+
+// ============================================================
+// 🎨 Memory Lane Special Effects
+// ============================================================
+
+/* تأثير كشف الصورة مع لمسة ذهبية (للعطور) */
+.memory-image-reveal {
+  position: relative;
+  overflow: hidden;
+  
+  .lazy__bg {
+    transition: all 1s ease;
+    
+    &.loaded {
+      animation: lazyPerfumeReveal 1.2s ease forwards;
+    }
+  }
+  
+  /* تأثير إطار ذهبي بعد التحميل */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-md);
+    transition: all 0.8s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .lazy__bg.loaded ~ &::after {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 30px rgba(201, 168, 124, 0.2);
+  }
+}
+
+/* تأثير ظهور تدريجي للصور في وضع الذكريات */
+.memory-mode-active {
+  .lazy__bg,
+  .swiper-lazy {
+    transition-duration: 0.8s;
+    
+    &.loaded,
+    &.swiper-lazy-loaded {
+      animation: lazyGoldReveal 1s ease forwards;
+    }
+  }
+}
+
+// ============================================================
+// 🎯 Utility Classes
+// ============================================================
+
+/* تأخير التحميل للصور المتتالية */
+.lazy-delay-1 { transition-delay: 0.1s; }
+.lazy-delay-2 { transition-delay: 0.2s; }
+.lazy-delay-3 { transition-delay: 0.3s; }
+.lazy-delay-4 { transition-delay: 0.4s; }
+.lazy-delay-5 { transition-delay: 0.5s; }
+
+/* مدة التحميل */
+.lazy-duration-300 { transition-duration: 0.3s; }
+.lazy-duration-500 { transition-duration: 0.5s; }
+.lazy-duration-800 { transition-duration: 0.8s; }
+.lazy-duration-1000 { transition-duration: 1s; }
+
+// ============================================================
+// 🌙 Dark Mode Support
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+  .image-placeholder {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-cream) 100%);
+    
+    &::after {
+      background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.02) 25%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.02) 75%,
+        transparent 100%
+      );
+    }
+  }
+  
+  .product-image-placeholder {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-cream) 100%);
+  }
+  
+  .swiper-lazy {
+    background-color: var(--bg-dark);
+  }
+}
+
+// ============================================================
+// 📱 Responsive Improvements
+// ============================================================
+
+@include mobile {
+  .memory-image-reveal::after {
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+  }
+}
+
+// ============================================================
+// 🎬 Loading Screen
+// ============================================================
+
+/* شاشة تحميل مخصصة للثيم */
+.page-loader {
+  @apply fixed inset-0 z-50 flex flex-col items-center justify-center;
+  background: var(--bg-light);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  /* أيقونة التحميل */
+  .loader-icon {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: loader 1s linear infinite;
+  }
+  
+  /* نص التحميل */
+  .loader-text {
+    @apply mt-6 text-center font-serif;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    animation: memoryGlow 2s ease-in-out infinite;
+  }
+  
+  /* أيقونة عطر صغيرة */
+  .loader-perfume {
+    font-size: 3rem;
+    animation: perfumeFloat 2s ease-in-out infinite;
   }
 }
