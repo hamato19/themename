@@ -1,29 +1,193 @@
+/* ============================================================
+   🌹 THE MEMORY LANE - متغيرات العطور والذكريات 🌹
+   ============================================================
+   هذا الملف يتحكم في جميع ألوان، خطوط، وظلال الثيم
+   ============================================================ */
 
-// Colors
+// ============================================================
+// 🎨 الألوان الأساسية - مستوحاة من العطور الكلاسيكية
+// ============================================================
+
+// الألوان الرئيسية للثيم
 $main-color: var(--color-primary);
-$infinte-color: var(--infinte-color);
+$secondary-color: var(--color-secondary);
+$gold-color: var(--color-gold);
+$dark-color: var(--color-dark);
+$light-color: var(--color-light);
+$cream-color: var(--color-cream);
+
+// ألوان النصوص
 $main-text-color: var(--main-text-color);
+$text-secondary: var(--text-secondary);
+$text-light: var(--text-light);
+$text-gold: var(--text-gold);
+
+// ألوان الخلفيات
+$bg-light: var(--bg-light);
+$bg-dark: var(--bg-dark);
+$bg-cream: var(--bg-cream);
+
+// ألوان العطور المميزة
+$amber-color: var(--color-amber);
+$rose-color: var(--color-rose);
+$mint-color: var(--color-mint);
+$wood-color: var(--color-wood);
+
+// ============================================================
+// 📝 متغيرات الألوان (CSS Variables)
+// ============================================================
 
 :root {
-  --infinte-color: #c9c9c9;
-  --main-text-color: #231f1e;
-  --main-text-color-dark: #2b2d34;
+    /* 🌟 الألوان الأساسية للثيم */
+    --color-primary: #8B7355;        /* بني دافئ - لون خشب العود */
+    --color-secondary: #C4A882;      /* بيج فاخر - لون الزعفران */
+    --color-gold: #C9A87C;           /* ذهبي كلاسيكي - لون العود الفاخر */
+    --color-dark: #2C1810;           /* بني غامق - لون خشب الصندل */
+    --color-light: #FEFCF8;          /* أبيض دافئ - لون زهرة الياسمين */
+    --color-cream: #F5E6D3;          /* كريمي ناعم - لون المسك الأبيض */
+    
+    /* 🌈 ألوان العطور المميزة */
+    --color-amber: #D4A574;          /* كهرماني - لون العنبر */
+    --color-rose: #C4878B;           /* وردي خفيف - لون الورد الدمشقي */
+    --color-mint: #A8C4B8;           /* نعناعي - لون النعناع الأخضر */
+    --color-wood: #5D4037;           /* بني خشبي - لون خشب الأرز */
+    
+    /* 📝 ألوان النصوص */
+    --main-text-color: #3D2B1F;      /* بني غامق للنصوص الرئيسية */
+    --text-secondary: #8D7B6B;       /* بني فاتح للنصوص الثانوية */
+    --text-light: #F5E6D3;           /* كريمي للنصوص على الخلفيات الداكنة */
+    --text-gold: #C9A87C;            /* ذهبي للنصوص المميزة */
+    
+    /* 🎨 ألوان الخلفيات */
+    --bg-light: #FEFCF8;             /* خلفية فاتحة دافئة */
+    --bg-dark: #1A0F0A;              /* خلفية داكنة للفوتر */
+    --bg-cream: #F5E6D3;             /* خلفية كريمية للأقسام المميزة */
+    
+    /* 🔲 ألوان الحدود والفواصل */
+    --border-color: #C4A882;         /* لون الحدود الأساسي */
+    --border-light: #E8DCD0;         /* لون الحدود الفاتح */
+    --border-dark: #5D4037;          /* لون الحدود الداكن */
+    
+    /* ⚫ ألوان الحالات */
+    --color-success: #6B8F71;        /* أخضر ناعم - للنجاح */
+    --color-error: #C4878B;          /* وردي محمر - للأخطاء */
+    --color-warning: #D4A574;        /* كهرماني - للتنبيهات */
+    --color-info: #8B7355;           /* بني دافئ - للمعلومات */
+    
+    /* ✨ الظلال */
+    --shadow-soft: 0 4px 20px rgba(139, 115, 85, 0.15);
+    --shadow-medium: 0 8px 30px rgba(139, 115, 85, 0.25);
+    --shadow-strong: 0 15px 50px rgba(44, 24, 16, 0.3);
+    --shadow-gold: 0 4px 20px rgba(201, 168, 124, 0.3);
+    
+    /* 🔤 الخطوط */
+    --font-main: "DINNextLTArabic", "Segoe UI", sans-serif;
+    --font-serif: "Georgia", "Times New Roman", serif;
+    --font-display: "DINNextLTArabic", serif;
+    
+    /* 📏 الأحجام */
+    --font-sm: 0.8685714286rem;      /* 13px */
+    --font-base: 1rem;               /* 16px */
+    --font-md: 1.125rem;             /* 18px */
+    --font-lg: 1.25rem;              /* 20px */
+    --font-xl: 1.5rem;               /* 24px */
+    --font-2xl: 2rem;                /* 32px */
+    --font-3xl: 2.5rem;              /* 40px */
+    
+    /* 📦 المسافات */
+    --spacing-xs: 0.25rem;           /* 4px */
+    --spacing-sm: 0.5rem;            /* 8px */
+    --spacing-md: 1rem;              /* 16px */
+    --spacing-lg: 2rem;              /* 32px */
+    --spacing-xl: 4rem;              /* 64px */
+    --spacing-2xl: 6rem;             /* 96px */
+    
+    /* 🎯 الإضافات */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+    --border-radius-full: 9999px;
+    
+    /* 📱 Responsive */
+    --container-max-width: 1280px;
+    --container-padding: 1rem;
+    
+    /* 🔌 Plugins */
+    --mm-ocd-width: calc(100% - 51px);
+}
 
-  /* current */
-  --color-primary: #5cd5c4;
-  --color-primary: #414042;
-  --color-primary-d: #272628;
-  --color-primary-l: #676668;
-  --color-primary-reverse: #ff6767;
-  --color-text: #7c8082;
-  --bg-gray: #c6c7ce1a;
-  --color-grey: #f5f7f9;
-  --color-light-grey: #eeeeee;
-  /* font-size */
-  --font-sm: 0.8685714286rem;
-  /* font-family: ; */
-  --font-main: "DINNextLTArabic";
+// ============================================================
+// 🎨 تدرجات لونية للاستخدام في التصميم
+// ============================================================
 
-  /* plugins */
-  --mm-ocd-width: calc(100% - 51px);
+// تدرجات البني الدافئ
+$primary-50: #F5F0EB;
+$primary-100: #E8DDD4;
+$primary-200: #D4C4B8;
+$primary-300: #C4A882;
+$primary-400: #A88B6E;
+$primary-500: #8B7355;  /* الأساسي */
+$primary-600: #6E5A43;
+$primary-700: #544330;
+$primary-800: #3D2B1F;
+$primary-900: #2C1810;
+
+// تدرجات الذهبي
+$gold-50: #F8F3EC;
+$gold-100: #F0E5D4;
+$gold-200: #E0D0B8;
+$gold-300: #D4C09C;
+$gold-400: #C9A87C;  /* الذهبي الأساسي */
+$gold-500: #B8926C;
+$godl-600: #A87D5C;
+$gold-700: #8C6648;
+$gold-800: #6E4F35;
+$gold-900: #4D3520;
+
+// ============================================================
+// 📝 دوال مساعدة للألوان
+// ============================================================
+
+// دالة لتوليد لون أفتح
+@function lighten-color($color, $amount) {
+    @return lighten($color, $amount);
+}
+
+// دالة لتوليد لون أغمق
+@function darken-color($color, $amount) {
+    @return darken($color, $amount);
+}
+
+// ============================================================
+// 🌙 الوضع الداكن (Dark Mode)
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: #8B7355;
+        --color-secondary: #5D4037;
+        --color-gold: #C9A87C;
+        --color-dark: #0D0705;
+        --color-light: #1A0F0A;
+        --color-cream: #2C1810;
+        
+        --main-text-color: #F5E6D3;
+        --text-secondary: #C4A882;
+        --text-light: #F5E6D3;
+        --text-gold: #C9A87C;
+        
+        --bg-light: #1A0F0A;
+        --bg-dark: #0D0705;
+        --bg-cream: #2C1810;
+        
+        --border-color: #5D4037;
+        --border-light: #3D2B1F;
+        --border-dark: #2C1810;
+        
+        --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+        --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.5);
+        --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.6);
+        --shadow-gold: 0 4px 20px rgba(201, 168, 124, 0.2);
+    }
 }
