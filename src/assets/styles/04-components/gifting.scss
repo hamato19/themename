@@ -1,15 +1,513 @@
-.s-gifting-modal{
-    .s-checkbox{
-        background-color: #fff !important;
-        border: 1px solid #ccc !important;
-        &:focus{
-            --tw-ring-color: transparent !important;
+/* ============================================================
+   🌹 THE MEMORY LANE - تنسيقات نظام الهدايا 🌹
+   ============================================================
+   هذا الملف يحتوي على تنسيقات نظام الهدايا في المتجر
+   ============================================================ */
+
+// ============================================================
+// 🎁 Gifting Modal
+// ============================================================
+
+.s-gifting-modal {
+  /* تنسيق الـ Checkbox */
+  .s-checkbox {
+    background-color: var(--bg-light) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: var(--border-radius-sm) !important;
+    transition: all 0.3s ease !important;
+    
+    &:checked {
+      background-color: var(--color-primary) !important;
+      border-color: var(--color-primary) !important;
+    }
+    
+    &:focus {
+      --tw-ring-color: transparent !important;
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15) !important;
+    }
+    
+    &:hover {
+      border-color: var(--color-gold) !important;
+    }
+    
+    /* تنسيق في وضع الذكريات */
+    .memory-mode-active & {
+      border-color: var(--color-gold) !important;
+      
+      &:checked {
+        background-color: var(--color-gold) !important;
+        border-color: var(--color-gold) !important;
+      }
+    }
+  }
+  
+  /* تنسيق أيقونة FilePond */
+  .s-gifting-filepond-placeholder-icon {
+    svg {
+      fill: var(--text-secondary) !important;
+      transition: all 0.3s ease;
+      
+      .memory-mode-active & {
+        fill: var(--color-gold) !important;
+      }
+    }
+    
+    &:hover svg {
+      fill: var(--color-primary) !important;
+      
+      .memory-mode-active & {
+        fill: var(--color-gold) !important;
+      }
+    }
+  }
+  
+  /* ============================================================
+     📦 تنسيقات إضافية للمودال
+     ============================================================ */
+  
+  .s-modal-content {
+    border-radius: var(--border-radius-lg) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: var(--shadow-strong) !important;
+    
+    .memory-mode-active & {
+      border-color: var(--color-gold) !important;
+      box-shadow: var(--shadow-gold) !important;
+    }
+  }
+  
+  .s-modal-header {
+    border-bottom: 2px solid var(--border-color) !important;
+    padding: 1.5rem !important;
+    
+    .memory-mode-active & {
+      border-bottom-color: var(--color-gold) !important;
+      background: linear-gradient(135deg, var(--bg-cream), var(--bg-light));
+    }
+    
+    .s-modal-title {
+      font-family: var(--font-serif) !important;
+      color: var(--color-primary) !important;
+      
+      .memory-mode-active & {
+        color: var(--color-gold) !important;
+      }
+    }
+  }
+  
+  .s-modal-body {
+    padding: 1.5rem !important;
+    background: var(--bg-light);
+    
+    .memory-mode-active & {
+      background: var(--bg-cream);
+    }
+  }
+  
+  .s-modal-footer {
+    border-top: 2px solid var(--border-color) !important;
+    padding: 1.5rem !important;
+    
+    .memory-mode-active & {
+      border-top-color: var(--color-gold) !important;
+    }
+  }
+  
+  /* ============================================================
+     🎨 تنسيق الحقول في المودال
+     ============================================================ */
+  
+  .s-input-group {
+    .s-input-label {
+      font-family: var(--font-serif) !important;
+      color: var(--color-primary) !important;
+      
+      .memory-mode-active & {
+        color: var(--color-gold) !important;
+      }
+    }
+    
+    .s-input-field {
+      border-radius: var(--border-radius-md) !important;
+      border: 2px solid var(--border-color) !important;
+      transition: all 0.3s ease !important;
+      
+      &:focus {
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1) !important;
+      }
+      
+      .memory-mode-active & {
+        border-color: var(--color-gold) !important;
+        
+        &:focus {
+          border-color: var(--color-gold) !important;
+          box-shadow: 0 0 0 3px rgba(201, 168, 124, 0.15) !important;
         }
+      }
     }
-    .s-gifting-filepond-placeholder-icon svg{
-        fill: #ccc !important;
+  }
+  
+  /* ============================================================
+     🎯 أزرار المودال
+     ============================================================ */
+  
+  .s-button-btn {
+    border-radius: var(--border-radius-md) !important;
+    font-family: var(--font-serif) !important;
+    transition: all 0.3s ease !important;
+    
+    &.s-button-primary {
+      background: var(--color-primary) !important;
+      color: #fff !important;
+      
+      &:hover {
+        background: var(--color-gold) !important;
+        color: var(--color-dark) !important;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-soft);
+      }
     }
+    
+    &.s-button-secondary {
+      border: 2px solid var(--color-primary) !important;
+      color: var(--color-primary) !important;
+      
+      &:hover {
+        background: var(--color-primary) !important;
+        color: #fff !important;
+      }
+    }
+  }
 }
-.s-gifting-widget .s-list-tile-item{
+
+// ============================================================
+// 🎁 Gifting Widget
+// ============================================================
+
+.s-gifting-widget {
+  .s-list-tile-item {
     @apply border-none rounded-t-none;
+    border-bottom: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+    padding: 1rem !important;
+    
+    &:hover {
+      background: var(--bg-cream) !important;
+    }
+    
+    .memory-mode-active & {
+      border-bottom-color: rgba(201, 168, 124, 0.2) !important;
+      
+      &:hover {
+        background: rgba(201, 168, 124, 0.05) !important;
+      }
+    }
+    
+    &:last-child {
+      border-bottom: none !important;
+    }
+  }
+  
+  /* ============================================================
+     🎨 تنسيقات إضافية للـ Widget
+     ============================================================ */
+  
+  .s-gifting-header {
+    font-family: var(--font-serif) !important;
+    color: var(--color-primary) !important;
+    padding: 1rem !important;
+    border-bottom: 2px solid var(--border-color) !important;
+    
+    .memory-mode-active & {
+      color: var(--color-gold) !important;
+      border-bottom-color: var(--color-gold) !important;
+    }
+  }
+  
+  .s-gifting-item {
+    .s-gifting-item-title {
+      font-family: var(--font-serif) !important;
+      color: var(--main-text-color) !important;
+      
+      .memory-mode-active & {
+        color: var(--color-dark) !important;
+      }
+    }
+    
+    .s-gifting-item-price {
+      color: var(--color-primary) !important;
+      font-weight: bold !important;
+      
+      .memory-mode-active & {
+        color: var(--color-gold) !important;
+      }
+    }
+  }
+  
+  .s-gifting-total {
+    border-top: 2px solid var(--border-color) !important;
+    padding: 1rem !important;
+    
+    .s-gifting-total-label {
+      font-family: var(--font-serif) !important;
+      color: var(--color-primary) !important;
+      
+      .memory-mode-active & {
+        color: var(--color-gold) !important;
+      }
+    }
+    
+    .s-gifting-total-price {
+      color: var(--color-primary) !important;
+      font-weight: bold !important;
+      font-size: 1.2rem !important;
+      
+      .memory-mode-active & {
+        color: var(--color-gold) !important;
+      }
+    }
+  }
+}
+
+// ============================================================
+// 🌹 THE MEMORY LANE - تنسيقات إضافية للهدايا
+// ============================================================
+
+/* تنسيق بطاقة الهدية */
+.gift-card {
+  @apply rounded-xl p-6 transition-all duration-300;
+  background: linear-gradient(135deg, var(--bg-cream), var(--bg-light));
+  border: 2px solid var(--color-gold);
+  box-shadow: var(--shadow-soft);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-gold);
+  }
+  
+  .memory-mode-active & {
+    background: linear-gradient(135deg, var(--bg-cream), var(--bg-light));
+  }
+  
+  .gift-card-title {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .gift-card-price {
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .gift-card-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+}
+
+/* تنسيق خيارات التغليف */
+.gift-wrap-option {
+  @apply flex items-center gap-3 p-3 rounded-lg transition-all duration-300 cursor-pointer;
+  border: 2px solid var(--border-color);
+  
+  &:hover {
+    border-color: var(--color-gold);
+    background: var(--bg-cream);
+  }
+  
+  &.selected {
+    border-color: var(--color-primary);
+    background: rgba(139, 115, 85, 0.05);
+    
+    .memory-mode-active & {
+      border-color: var(--color-gold);
+      background: rgba(201, 168, 124, 0.05);
+    }
+  }
+  
+  .gift-wrap-image {
+    @apply w-12 h-12 rounded-lg object-cover;
+    border: 1px solid var(--border-color);
+  }
+  
+  .gift-wrap-name {
+    font-family: var(--font-serif);
+    color: var(--main-text-color);
+    font-weight: 500;
+  }
+  
+  .gift-wrap-price {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+}
+
+// ============================================================
+// 📱 تحسينات للشاشات الصغيرة
+// ============================================================
+
+@include mobile {
+  .s-gifting-modal {
+    .s-modal-content {
+      border-radius: var(--border-radius-md) !important;
+    }
+    
+    .s-modal-header {
+      padding: 1rem !important;
+    }
+    
+    .s-modal-body {
+      padding: 1rem !important;
+    }
+    
+    .s-modal-footer {
+      padding: 1rem !important;
+    }
+  }
+  
+  .gift-card {
+    @apply p-4;
+    
+    .gift-card-price {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .gift-wrap-option {
+    @apply p-2;
+    
+    .gift-wrap-image {
+      @apply w-10 h-10;
+    }
+  }
+}
+
+// ============================================================
+// 🌙 الوضع الداكن (Dark Mode)
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+  .s-gifting-modal {
+    .s-checkbox {
+      background-color: var(--bg-dark) !important;
+      border-color: var(--border-dark) !important;
+      
+      &:checked {
+        background-color: var(--color-gold) !important;
+        border-color: var(--color-gold) !important;
+      }
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(201, 168, 124, 0.15) !important;
+      }
+    }
+    
+    .s-modal-content {
+      background: var(--bg-dark) !important;
+      border-color: var(--border-dark) !important;
+    }
+    
+    .s-modal-header {
+      border-bottom-color: var(--border-dark) !important;
+      
+      .s-modal-title {
+        color: var(--color-gold) !important;
+      }
+    }
+    
+    .s-modal-body {
+      background: var(--bg-dark) !important;
+    }
+    
+    .s-modal-footer {
+      border-top-color: var(--border-dark) !important;
+    }
+    
+    .s-input-group {
+      .s-input-label {
+        color: var(--color-gold) !important;
+      }
+      
+      .s-input-field {
+        background: var(--bg-dark) !important;
+        border-color: var(--border-dark) !important;
+        color: var(--text-light) !important;
+        
+        &:focus {
+          border-color: var(--color-gold) !important;
+        }
+      }
+    }
+    
+    .s-button-btn {
+      &.s-button-primary {
+        background: var(--color-gold) !important;
+        color: var(--color-dark) !important;
+        
+        &:hover {
+          background: var(--color-amber) !important;
+        }
+      }
+      
+      &.s-button-secondary {
+        border-color: var(--color-gold) !important;
+        color: var(--color-gold) !important;
+        
+        &:hover {
+          background: var(--color-gold) !important;
+          color: var(--color-dark) !important;
+        }
+      }
+    }
+  }
+  
+  .s-gifting-widget {
+    .s-list-tile-item {
+      border-bottom-color: var(--border-dark) !important;
+      
+      &:hover {
+        background: rgba(201, 168, 124, 0.05) !important;
+      }
+    }
+    
+    .s-gifting-header {
+      color: var(--color-gold) !important;
+      border-bottom-color: var(--border-dark) !important;
+    }
+    
+    .s-gifting-item {
+      .s-gifting-item-title {
+        color: var(--text-light) !important;
+      }
+      
+      .s-gifting-item-price {
+        color: var(--color-gold) !important;
+      }
+    }
+    
+    .s-gifting-total {
+      border-top-color: var(--border-dark) !important;
+      
+      .s-gifting-total-label {
+        color: var(--color-gold) !important;
+      }
+      
+      .s-gifting-total-price {
+        color: var(--color-gold) !important;
+      }
+    }
+  }
+  
+  .gift-card {
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-cream));
+    border-color: var(--color-gold);
+    
+    .gift-card-title {
+      color: var(--color-gold);
+    }
+  }
 }
