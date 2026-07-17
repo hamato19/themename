@@ -1,41 +1,306 @@
+/* ============================================================
+   🌹 THE MEMORY LANE - تنسيقات النماذج والحقول 🌹
+   ============================================================
+   هذا الملف يحتوي على جميع تنسيقات النماذج والحقول في الثيم
+   ============================================================ */
+
+// ============================================================
+// 🎯 Radio Buttons
+// ============================================================
+
 input[type="radio"] {
   &.sr-only {
     div.absolute {
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
 
-    &:checked~div.absolute {
-      border-color: var(--color-main);
+    &:checked ~ div.absolute {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.2);
+    }
+  }
+  
+  /* تنسيق Radio مخصص للثيم */
+  &.memory-radio {
+    @apply appearance-none w-5 h-5 border-2 rounded-full transition-all duration-300 cursor-pointer;
+    border-color: var(--border-color);
+    position: relative;
+    
+    &:checked {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15);
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+      }
+    }
+    
+    &:hover {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 124, 0.15);
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.2);
     }
   }
 }
 
+// ============================================================
+// 🚫 Disabled Inputs
+// ============================================================
+
 input[type="text"]:disabled {
-  //background: #f9f9f9;
-  color: #838383;
+  color: var(--text-secondary);
+  background: var(--bg-cream);
+  cursor: not-allowed;
+  opacity: 0.7;
 }
+
+// ============================================================
+// 📝 Form Label
+// ============================================================
 
 .form-label {
   @apply block text-sm font-bold text-gray-700 mb-2.5 md:mb-0 sm:mt-px;
+  font-family: var(--font-sans);
+  color: var(--main-text-color);
+  
+  /* تنسيق مخصص للثيم */
+  &.memory-label {
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    
+    .required {
+      color: var(--color-rose);
+      margin-right: 4px;
+    }
+  }
 }
+
+// ============================================================
+// 📝 Form Input
+// ============================================================
 
 .form-input {
   @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md;
   appearance: none;
   -webkit-appearance: none;
+  font-family: var(--font-sans);
+  color: var(--main-text-color);
+  background: var(--bg-light);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 0 12px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.1);
+    outline: none;
+  }
+  
+  &:hover {
+    border-color: var(--color-gold);
+  }
+  
+  &::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+  
+  /* تنسيق مخصص للثيم */
+  &.memory-input {
+    border-radius: var(--border-radius-lg);
+    padding: 12px 16px;
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    height: auto;
+    
+    &:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.15);
+    }
+    
+    &::placeholder {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+  }
 }
+
+// ============================================================
+// 📝 Textarea
+// ============================================================
 
 textarea.form-input {
   @apply h-24;
+  padding: 12px;
+  resize: vertical;
+  min-height: 80px;
+  
+  &.memory-textarea {
+    border-radius: var(--border-radius-lg);
+    padding: 16px;
+    border: 2px solid var(--border-color);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    min-height: 120px;
+    background: var(--bg-light);
+    
+    &:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.15);
+    }
+  }
 }
+
+// ============================================================
+// ✅ Error & Success States
+// ============================================================
 
 .has-error {
   @apply border-red-400 focus:border-red-500;
+  
+  &.memory-input {
+    border-color: var(--color-rose);
+    
+    &:focus {
+      border-color: var(--color-rose);
+      box-shadow: 0 0 0 4px rgba(196, 135, 139, 0.15);
+    }
+  }
 }
 
 .has-success {
   @apply border-green-500 focus:border-green-600;
+  
+  &.memory-input {
+    border-color: var(--color-mint);
+    
+    &:focus {
+      border-color: var(--color-mint);
+      box-shadow: 0 0 0 4px rgba(168, 196, 184, 0.15);
+    }
+  }
 }
+
+// ============================================================
+// 🔍 Select Dropdown
+// ============================================================
+
+select {
+  @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B7355' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  font-family: var(--font-sans);
+  color: var(--main-text-color);
+  background-color: var(--bg-light);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.1);
+    outline: none;
+  }
+  
+  &:hover {
+    border-color: var(--color-gold);
+  }
+  
+  /* تنسيق مخصص للثيم */
+  &.memory-select {
+    border-radius: var(--border-radius-lg);
+    padding: 12px 16px;
+    height: auto;
+    min-height: 48px;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A87C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    
+    &:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.15);
+    }
+  }
+}
+
+// ============================================================
+// 📝 Checkbox
+// ============================================================
+
+input[type="checkbox"] {
+  &.memory-checkbox {
+    @apply w-5 h-5 rounded transition-all duration-300 cursor-pointer;
+    accent-color: var(--color-primary);
+    border: 2px solid var(--border-color);
+    
+    &:checked {
+      accent-color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    
+    &:hover {
+      border-color: var(--color-gold);
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15);
+    }
+  }
+}
+
+// ============================================================
+// 📝 Form Group
+// ============================================================
+
+.form-group {
+  @apply mb-4;
+  
+  .form-hint {
+    @apply text-xs mt-1;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    
+    &.memory-hint {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--color-amber);
+    }
+  }
+  
+  .form-error {
+    @apply text-xs mt-1;
+    color: var(--color-rose);
+    font-family: var(--font-sans);
+  }
+}
+
+// ============================================================
+// 📱 Input Size Fix (Prevent Zoom on Mobile)
+// ============================================================
 
 input[type="text"],
 input[type="email"],
@@ -50,11 +315,136 @@ select {
 }
 
 @media screen and (max-width: 768px) {
-
   input,
   textarea,
   select {
     font-size: 16px !important;
     transform: scale(1);
+  }
+}
+
+// ============================================================
+// 🌹 THE MEMORY LANE - تنسيقات إضافية
+// ============================================================
+
+/* حقل مع أيقونة */
+.input-with-icon {
+  @apply relative;
+  
+  .input-icon {
+    @apply absolute top-1/2 -translate-y-1/2;
+    color: var(--text-secondary);
+    
+    [dir="ltr"] & {
+      left: 14px;
+    }
+    
+    [dir="rtl"] & {
+      right: 14px;
+    }
+  }
+  
+  .form-input,
+  .memory-input {
+    [dir="ltr"] & {
+      padding-left: 44px;
+    }
+    
+    [dir="rtl"] & {
+      padding-right: 44px;
+    }
+  }
+}
+
+/* حقل مع زر */
+.input-with-button {
+  @apply flex items-center gap-2;
+  
+  .form-input,
+  .memory-input {
+    flex: 1;
+  }
+  
+  .input-btn {
+    @apply flex-shrink-0;
+  }
+}
+
+/* تنسيقات حقول العطور */
+.perfume-input {
+  border-color: var(--color-gold);
+  background: linear-gradient(135deg, var(--bg-light), var(--bg-cream));
+  
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--color-amber);
+    opacity: 0.6;
+    font-style: italic;
+  }
+}
+
+// ============================================================
+// 🌙 الوضع الداكن (Dark Mode)
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+  .form-input,
+  .memory-input {
+    background: var(--bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-light);
+    
+    &:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.1);
+    }
+  }
+  
+  select,
+  .memory-select {
+    background-color: var(--bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-light);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A87C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    
+    &:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 124, 0.1);
+    }
+  }
+  
+  .form-label {
+    color: var(--text-light);
+  }
+  
+  .perfume-input {
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-cream));
+    border-color: var(--color-gold);
+  }
+  
+  input[type="radio"] {
+    &.memory-radio {
+      border-color: var(--border-dark);
+      
+      &:checked {
+        border-color: var(--color-gold);
+        background: var(--color-gold);
+      }
+    }
+  }
+  
+  input[type="checkbox"] {
+    &.memory-checkbox {
+      border-color: var(--border-dark);
+      
+      &:checked {
+        accent-color: var(--color-gold);
+        border-color: var(--color-gold);
+      }
+    }
   }
 }
