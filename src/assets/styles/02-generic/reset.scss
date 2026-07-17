@@ -1,14 +1,12 @@
-body {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 26px;
-  color: var(--main-text-color);
-  position: relative;
-}
+/* ============================================================
+   🌹 THE MEMORY LANE - التنسيقات العامة الأساسية 🌹
+   ============================================================
+   هذا الملف يحتوي على التنسيقات العامة للثيم
+   ============================================================ */
 
-// p {
-//   font-size: 16px;
-// }
+// ============================================================
+// 📐 الإعدادات الأساسية للصفحة
+// ============================================================
 
 html {
   width: 100%;
@@ -16,13 +14,27 @@ html {
   position: relative;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--main-text-color);
+  position: relative;
   border: 0;
   margin: 0;
   padding: 0;
+  font-family: var(--font-main);
+  background: var(--bg-light);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+
+// ============================================================
+// 🔤 تنسيقات العناوين
+// ============================================================
 
 h1, .h1,
 h2, .h2,
@@ -32,21 +44,99 @@ h5, .h5,
 h6, .h6 {
   font-weight: 600;
   margin-bottom: 0px;
+  font-family: var(--font-serif);
+  color: var(--color-dark);
+}
+
+h1 {
+  @apply text-3xl;
+  font-family: var(--font-serif);
+  letter-spacing: 0.5px;
+  
+  .memory-mode-active & {
+    letter-spacing: 1px;
+  }
+}
+
+h2 {
+  @apply text-xl;
+  font-family: var(--font-serif);
+  letter-spacing: 0.3px;
+  
+  .memory-mode-active & {
+    letter-spacing: 0.5px;
+  }
+}
+
+h3 {
+  @apply text-xl;
+  line-height: 38px;
+  font-family: var(--font-serif);
+}
+
+h4 {
+  font-size: 22px;
+  line-height: 32px;
+  font-family: var(--font-serif);
+}
+
+h5 {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: var(--font-serif);
+}
+
+h6 {
+  font-size: 14px;
+  line-height: 26px;
+  font-family: var(--font-serif);
+}
+
+// ============================================================
+// 📝 تنسيقات النصوص
+// ============================================================
+
+p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  
+  .memory-mode-active & {
+    font-size: 16.5px;
+    line-height: 1.9;
+  }
 }
 
 a {
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  color: var(--color-primary);
+  
+  &:hover {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
+  
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
 }
+
+// ============================================================
+// 🖼️ تنسيقات الصور
+// ============================================================
 
 img {
   max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-a:focus {
-  outline: none;
-  text-decoration: none;
-}
+// ============================================================
+// 📋 تنسيقات القوائم
+// ============================================================
 
 ul,
 li {
@@ -55,40 +145,319 @@ li {
   list-style: none;
 }
 
-
-h1 {
-  @apply text-3xl;
-}
-
-h2 {
-  @apply text-xl;
-}
-
-h3 {
-  @apply text-xl;
-  line-height: 38px;
-}
-
-// h4 {
-//   font-size: 22px;
-//   line-height: 32px;
-// }
-
-// h5 {
-//   font-size: 16px;
-//   line-height: 24px;
-// }
-
-// h6 {
-//   font-size: 14px;
-//   line-height: 26px;
-// }
+// ============================================================
+// 🎨 الألوان المخصصة
+// ============================================================
 
 .f-color {
-  color: #FF6767;
+  color: var(--color-rose);
 }
+
+.memory-color-primary {
+  color: var(--color-primary);
+}
+
+.memory-color-gold {
+  color: var(--color-gold);
+}
+
+.memory-color-amber {
+  color: var(--color-amber);
+}
+
+.memory-color-dark {
+  color: var(--color-dark);
+}
+
+.memory-color-cream {
+  color: var(--color-cream);
+}
+
+// ============================================================
+// 🏷️ تنسيقات العناوين الفرعية
+// ============================================================
 
 h5.subtitle {
   font-size: 16px;
   font-weight: 400;
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+  
+  .memory-mode-active & {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-primary);
+  }
+}
+
+// ============================================================
+// 🌹 تنسيقات إضافية لثيم العطور
+// ============================================================
+
+/* تنسيق النصوص المميزة */
+.text-memory {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+}
+
+/* تنسيق النصوص الذهبية */
+.text-gold {
+  color: var(--color-gold);
+  font-family: var(--font-serif);
+}
+
+/* تنسيق النصوص الكريمية */
+.text-cream {
+  color: var(--color-cream);
+}
+
+/* تنسيق النصوص العطرية (مائل) */
+.text-perfume {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-amber);
+  letter-spacing: 0.3px;
+}
+
+/* تنسيق العناوين الرئيسية للصفحة */
+.page-title {
+  font-family: var(--font-serif);
+  color: var(--color-dark);
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--color-gold);
+    margin: 0.8rem auto;
+    border-radius: 2px;
+  }
+  
+  .memory-mode-active & {
+    letter-spacing: 2px;
+    
+    &::before {
+      content: '✦';
+      margin-right: 12px;
+      color: var(--color-gold);
+      animation: memoryGlow 3s ease-in-out infinite;
+    }
+    
+    &::after {
+      content: '✦';
+      margin-left: 12px;
+      color: var(--color-gold);
+      animation: memoryGlow 3s ease-in-out infinite 0.5s;
+    }
+  }
+}
+
+/* تنسيق الأقسام */
+.section-title {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+  
+  .memory-mode-active & {
+    letter-spacing: 1px;
+    
+    &::before,
+    &::after {
+      content: '✦';
+      color: var(--color-gold);
+      margin: 0 10px;
+      animation: memoryGlow 3s ease-in-out infinite;
+    }
+  }
+}
+
+.section-subtitle {
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  
+  .memory-mode-active & {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-amber);
+  }
+}
+
+// ============================================================
+// 📦 الحاويات
+// ============================================================
+
+.container-memory {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  width: 100%;
+}
+
+// ============================================================
+// 🎯 فئات مساعدة إضافية
+// ============================================================
+
+/* تنسيق الفواصل الذهبية */
+.divider-memory {
+  width: 80px;
+  height: 2px;
+  background: var(--color-gold);
+  margin: 1.5rem auto;
+  border-radius: 2px;
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gold);
+    font-size: 0.8rem;
+  }
+  
+  &::before {
+    left: -20px;
+  }
+  
+  &::after {
+    right: -20px;
+  }
+}
+
+/* تنسيق الخلفيات */
+.bg-memory-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.bg-memory-gold {
+  background: var(--color-gold);
+  color: var(--color-dark);
+}
+
+.bg-memory-dark {
+  background: var(--color-dark);
+  color: var(--text-light);
+}
+
+.bg-memory-cream {
+  background: var(--bg-cream);
+  color: var(--color-dark);
+}
+
+/* تنسيق الحدود */
+.border-memory-gold {
+  border: 1px solid var(--color-gold);
+}
+
+.border-memory-primary {
+  border: 1px solid var(--color-primary);
+}
+
+/* تنسيق الظلال */
+.shadow-memory-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-memory-medium {
+  box-shadow: var(--shadow-medium);
+}
+
+.shadow-memory-strong {
+  box-shadow: var(--shadow-strong);
+}
+
+.shadow-memory-gold {
+  box-shadow: var(--shadow-gold);
+}
+
+// ============================================================
+// 📱 تحسينات للشاشات الصغيرة
+// ============================================================
+
+@include mobile {
+  body {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    line-height: 30px;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+    
+    .memory-mode-active & {
+      &::before,
+      &::after {
+        margin: 0 6px;
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+    
+    .memory-mode-active & {
+      &::before,
+      &::after {
+        margin: 0 6px;
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  .divider-memory {
+    width: 60px;
+    
+    &::before,
+    &::after {
+      font-size: 0.6rem;
+    }
+    
+    &::before {
+      left: -15px;
+    }
+    
+    &::after {
+      right: -15px;
+    }
+  }
+}
+
+@include tablet {
+  .page-title {
+    font-size: 2.2rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
 }
