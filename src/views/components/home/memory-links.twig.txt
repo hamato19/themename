@@ -1,0 +1,25 @@
+{#
+| Variable      | Type     | Description                                      |
+|---------------|----------|--------------------------------------------------|
+| title         | string   | عنوان القسم                                      |
+| links[]       | array    | قائمة الروابط                                    |
+| links[].icon  | string   | أيقونة الرابط (sicon-*)                          |
+| links[].title | string   | عنوان الرابط                                     |
+| links[].url   | string   | رابط الصفحة                                      |
+| show_controls | boolean  | عرض أسهم التحرك                                  |
+#}
+<section class="s-block memory-links-wrapper container">
+    <div class="s-block__title">
+        <div class="right-side">
+            <h2>{{ (title is iterable ? title[user.language.code]|default(title|first) : title) }}</h2>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {% for link in links %}
+            <a href="{{ link.url }}" class="slide--cat-entry memory-link-item">
+                <i class="{{ link.icon }}"></i>
+                <h2>{{ (link.title is iterable ? link.title[user.language.code]|default(link.title|first) : link.title) }}</h2>
+            </a>
+        {% endfor %}
+    </div>
+</section>

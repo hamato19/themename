@@ -1,0 +1,23 @@
+{#
+| Variable      | Type     | Description                                      |
+|---------------|----------|--------------------------------------------------|
+| banners[]     | array    | قائمة البانات                                    |
+| banners[].image| string  | صورة البانر                                      |
+| banners[].url | string   | رابط البانر                                      |
+| banners[].title| string  | عنوان البانر                                     |
+| banners[].description| string| وصف البانر                                      |
+#}
+<section class="s-block s-block--banners container">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {% for banner in banners %}
+            <div class="banner-entry has-overlay with-hover" style="background-image: url('{{ banner.image }}');">
+                <a href="{{ banner.url }}" class="block h-full w-full">
+                    <article>
+                        <h3>{{ (banner.title is iterable ? banner.title[user.language.code]|default(banner.title|first) : banner.title) }}</h3>
+                        <p>{{ (banner.description is iterable ? banner.description[user.language.code]|default(banner.description|first) : banner.description) }}</p>
+                    </article>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
