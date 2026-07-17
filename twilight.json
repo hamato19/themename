@@ -302,20 +302,18 @@
             },
             "icon": "sicon-image-carousel",
             "path": "home.memory-slider",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1",
-            "is_default": true,
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='background: linear-gradient(135deg, #8B7355, #C4A882); border-radius: 12px; padding: 20px; margin-bottom: 20px;'><h4 style='color: #fff; text-align: center;'>✨ سلايدر ذكريات العطور ✨</h4><p style='color: #F5E6D3; text-align: center;'>أضف لمسة من الحنين إلى متجرك مع صور تعكس ذكريات العطور الفاخرة</p></div>"
+                    "value": "<div ><h4 >✨ سلايدر ذكريات العطور ✨</h4><p >أضف لمسة من الحنين إلى متجرك مع صور تعكس ذكريات العطور الفاخرة</p></div>"
                 },
                 {
                     "type": "static",
                     "format": "description",
                     "id": "enhance-slider-note",
-                    "value": "<div style='background-color: #FFF8F0; border-right: 4px solid #8B7355; padding: 12px 16px; border-radius: 8px;'><strong>💡 نصيحة:</strong> استخدم صوراً تعكس ذكريات العطور، مثل زجاجات العطور الكلاسيكية، أو مشاهد تعبر عن الحنين والأناقة</div>"
+                    "value": "<div ><strong>💡 نصيحة:</strong> استخدم صوراً تعكس ذكريات العطور، مثل زجاجات العطور الكلاسيكية، أو مشاهد تعبر عن الحنين والأناقة</div>"
                 },
                 {
                     "id": "slides",
@@ -863,7 +861,8 @@
                             "description": "* المقاس المناسب للصورة هو 640×427 بكسل",
                             "settings": {
                                 "height": 427,
-                                "width": 640                            }
+                                "width": 640
+                            }
                         },
                         {
                             "type": "items",
@@ -1139,4 +1138,4 @@
         "ar": "ثيم 'ذا ميموري لين' - رحلة عبر الذكريات مع أروع العطور. تصميم كلاسيكي أنيق يحاكي الحنين والجمال، مثالي لمتاجر العطور الفاخرة.",
         "en": "The Memory Lane Theme - A journey through memories with the finest perfumes. A classic elegant design that evokes nostalgia and beauty, perfect for luxury perfume stores."
     }
-                }
+}
