@@ -1,15 +1,10 @@
-{% extends "layouts.master" %}
+{% extends "layouts/master.twig" %}
 
 {% block content %}
-    {# استدعاء كل مكون باستخدام المسار المحدد في twilight.json #}
-    {% component 'home.memory-slider' %}
-    {% component 'home.memory-links' %}
-    {% component 'home.memory-products-slider' %}
-    {% component 'home.memory-square-banners' %}
-    {% component 'home.memory-brands' %}
-    {% component 'home.memory-testimonials' %}
-{% endblock %}
-
-{% block scripts %}
-    <script defer src="{{ 'home.js' | asset }}"></script>
+    {% component 'components.home.memory-slider' %}
+    {% component 'components.home.memory-links' %}
+    {% component 'components.home.memory-products-slider' %}
+    {% component 'components.home.memory-square-banners' %}
+    {% component 'components.home.memory-brands' %}
+    {% component 'components.home.memory-testimonials' %}
 {% endblock %}
