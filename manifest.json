@@ -1,0 +1,9 @@
+{
+  "name": "The Memory Lane",
+  "version": "1.0.0",
+  "author": "Abou Elias",
+  "description": "ثيم عصري ومخصص لمتجر تجريبي",
+  "theme_version": "1.0.0",
+  "salla_version": "v2",
+  "min_salla_version": "2.0.0"
+}
