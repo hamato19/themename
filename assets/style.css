@@ -1,0 +1,33 @@
+/*
+ * Theme Name: The Memory Lane
+ * Version: 1.0.0
+ * Author: Abou Elias
+ */
+
+/* التنسيق الأساسي للمتجر */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* تنسيق الحاوية الرئيسية */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* تنسيق المكونات - يمكنك إضافة كلاسات مخصصة هنا لاحقاً */
+.memory-section {
+    padding: 40px 0;
+}
+
+/* التجاوب مع الجوال */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+}
