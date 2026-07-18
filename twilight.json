@@ -1,9 +1,9 @@
 {
     "name": {
-        "ar": "ذا ميموري لين",
+        "ar": "The Memory Lane",
         "en": "The Memory Lane"
     },
-    "repository": "https://github.com/hamato19/themename.git",
+    "repository": "https://github.com/hamato19/themename",
     "author_email": "Hamato19@gmail.com",
     "features": [
         "mega-menu",
