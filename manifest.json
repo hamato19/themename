@@ -1,17 +1,15 @@
 {
   "name": "The Memory Lane",
   "version": "1.0.0",
-  "author": "Abou Elias",
-  "description": "A journey through memories",
   "salla_version": "v2",
-  "min_salla_version": "2.0.0",
-  "theme_version": "1.0.0",
   "components": {
     "sections": [
-      "home.memory-slider",
-      "home.memory-links",
-      "home.memory-products-slider",
-      "home.memory-square-banners"
+      "components.home.memory-slider",
+      "components.home.memory-links",
+      "components.home.memory-products-slider",
+      "components.home.memory-square-banners",
+      "components.home.memory-brands",
+      "components.home.memory-testimonials"
     ]
   }
 }
