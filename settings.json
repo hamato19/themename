@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "home.memory-slider": {
+      "name": "سلايدر ذكريات العطور",
+      "settings": []
+    },
+    "home.memory-links": {
+      "name": "روابط سريعة",
+      "settings": []
+    }
+  }
+}
